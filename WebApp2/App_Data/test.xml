@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <Customers>
+    <Customer Id="1" Name="Ivanov Ivan Ivanovich" Birdate="01.01.1990" Regdate="01.01.2020" Email="ivanov@test.ru" Phone="+7(800)555-35-35"/>
+    <Customer Id="2" Name="Semenov Semen Semenovich" Birdate="02.02.1991" Regdate="02.02.2020" Email="semenov@test.ru" Phone="+7(800)555-36-36"/>
+  </Customers>
+  <Orders>
+    <Order Id="1" Customer="1" Regdate="02.02.2020" Value="1337.00" Status="Куплен"/>
+    <Order Id="2" Customer="1" Regdate="03.03.2020" Value="13371.00" Status="Куплен"/>
+    <Order Id="3" Customer="2" Regdate="04.04.2020" Value="13372.00" Status="Заблокирован"/>
+  </Orders>
+</root>
