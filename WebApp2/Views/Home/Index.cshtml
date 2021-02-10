@@ -1,5 +1,10 @@
 ﻿@model WebApp2.Models.ViewModel
-    <hr>
+<style>
+    .odata {
+        display: inline-block;
+    }
+</style>
+<hr>
 @{
 
     foreach (WebApp2.Models.Customer c in Model.Customers)
@@ -13,4 +18,9 @@
     }
 
 
+}
+@section scripts{
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 }
