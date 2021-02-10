@@ -20,5 +20,7 @@ namespace WebApp2.Data
         }
 
         public System.Data.Entity.DbSet<WebApp2.Models.Customer> Customers { get; set; }
+
+        public System.Data.Entity.DbSet<WebApp2.Models.Order> Orders { get; set; }
     }
 }

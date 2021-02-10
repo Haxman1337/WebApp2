@@ -14,11 +14,11 @@ namespace WebApp2.Controllers
 {
     public class CustomersController : Controller
     {
-        private WebApp2Context db = new WebApp2Context();
 
         // GET: Customers
         public ActionResult Index()
         {
+            XmlWorks3.Save();
             return View(XmlWorks3.Customers);
         }
 
@@ -30,11 +30,15 @@ namespace WebApp2.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Customer customer = XmlWorks3.Customers.First(item => item.Id == id);
+            ViewModel vm = new ViewModel();
+            vm.Customers = new List<Customer>();
+            vm.Customers.Add(customer);
+            vm.Orders = XmlWorks3.Orders.FindAll(item => item.Customer == customer.Id);
             if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(vm);
         }
 
         // GET: Customers/Create
@@ -53,7 +57,10 @@ namespace WebApp2.Controllers
             if (ModelState.IsValid)
             {
                 customer.Id = (XmlWorks3.Customers.Max(item => int.Parse(item.Id)) + 1).ToString();
+                customer.Regdate = SimpleDateConverter.ConvertBack(customer.Regdate);
+                customer.Birdate = SimpleDateConverter.ConvertBack(customer.Birdate);
                 XmlWorks3.Customers.Add(customer);
+                XmlWorks3.Save();
                 return RedirectToAction("Index");
             }
 
@@ -90,7 +97,6 @@ namespace WebApp2.Controllers
                 neededcstmr.Email = customer.Email;
                 neededcstmr.Birdate = SimpleDateConverter.ConvertBack(customer.Birdate);
                 neededcstmr.Regdate = SimpleDateConverter.ConvertBack(customer.Regdate);
-                System.Diagnostics.Debug.WriteLine(XmlWorks3.Customers[0].Regdate);
                 return RedirectToAction("Index");
             }
             return View(customer);
@@ -125,7 +131,7 @@ namespace WebApp2.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                
             }
             base.Dispose(disposing);
         }

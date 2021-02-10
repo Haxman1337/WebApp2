@@ -1,4 +1,4 @@
-﻿@model WebApp2.Models.Customer
+﻿@model WebApp2.Models.ViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -11,48 +11,79 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Customers[0].Id)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Customers[0].Id)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Birdate)
+            @Html.DisplayNameFor(model => model.Customers[0].Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Birdate)
+            @Html.DisplayFor(model => model.Customers[0].Name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Regdate)
+            @Html.DisplayNameFor(model => model.Customers[0].Birdate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Regdate)
+            @Html.DisplayFor(model => model.Customers[0].Birdate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayNameFor(model => model.Customers[0].Regdate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Email)
+            @Html.DisplayFor(model => model.Customers[0].Regdate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Phone)
+            @Html.DisplayNameFor(model => model.Customers[0].Email)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Phone)
+            @Html.DisplayFor(model => model.Customers[0].Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customers[0].Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customers[0].Phone)
         </dd>
 
     </dl>
+    @foreach (var item in Model.Orders)
+    {<table class="table">
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Regdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Value)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", "Orders", new { id = item.Id }, null) |
+            @Html.ActionLink("Details", "Details", "Orders", new { id = item.Id }, null) |
+            @Html.ActionLink("Delete", "Delete", "Orders", new { id = item.Id }, null)
+        </td>
+    </tr>
+    </table>
+    }
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Customers[0].Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

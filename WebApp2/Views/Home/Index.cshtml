@@ -1,26 +1,3 @@
 ﻿@model WebApp2.Models.ViewModel
-<style>
-    .odata {
-        display: inline-block;
-    }
-</style>
-<hr>
-@{
 
-    foreach (WebApp2.Models.Customer c in Model.Customers)
-    {
-        Html.RenderPartial("_Customer", c);
-        var neededOrders = from o in Model.Orders where o.Customer == c.Id select o;
-        foreach (WebApp2.Models.Order order in neededOrders)
-        {
-            Html.RenderPartial("_Order", order);
-        }
-    }
-
-
-}
-@section scripts{
-
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-}
+Главная страница

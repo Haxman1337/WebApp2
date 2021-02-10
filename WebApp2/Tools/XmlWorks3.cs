@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 using WebApp2.Models;
 
 namespace WebApp2.Tools
@@ -18,7 +20,7 @@ namespace WebApp2.Tools
         {
             xDoc = XDocument.Load(path);
             pathToXdoc = path;
-            foreach(XElement el in xDoc.Element("root").Element("Customers").Elements("Customer"))
+            foreach (XElement el in xDoc.Element("root").Element("Customers").Elements("Customer"))
             {
                 Customer c = new Customer(el.Attribute("Id").Value, el.Attribute("Name").Value, el.Attribute("Birdate").Value, el.Attribute("Regdate").Value, el.Attribute("Email").Value, el.Attribute("Phone").Value);
                 Customers.Add(c);
@@ -32,7 +34,17 @@ namespace WebApp2.Tools
 
         public static void Save()
         {
-            xDoc.Save(pathToXdoc);
+            ViewModel vm = new ViewModel();
+            vm.Customers = Customers;
+            vm.Orders = Orders;
+            XmlSerializer formatter = new XmlSerializer(typeof(ViewModel));
+
+            // получаем поток, куда будем записывать сериализованный объект
+            using (FileStream fs = new FileStream(@"C:\Users\Haxman\Documents\1.xml", FileMode.OpenOrCreate))
+            {
+                formatter.Serialize(fs, vm);
+            }
+            //xDoc.Save(pathToXdoc);
         }
     }
 }

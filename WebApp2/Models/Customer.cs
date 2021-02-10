@@ -41,13 +41,13 @@ namespace WebApp2.Models
      //   [RegularExpression(@"^[+][7][(]\d{3}[)]\d{3}[-]\d{2}[-]\d{2}", ErrorMessage = "Некорректный номер телефона")]
         public string Phone { get; set; }*/
 
-        [Required]
-        [HiddenInput(DisplayValue = false)]
+        
         public string Id { get; set; }
 
         [Required]
         [Display(Name = "ФИО")]
         [DataType(DataType.Text)]
+        [RegularExpression(@"^[A-Za-zFА-Яа-я ]+$", ErrorMessage = "Некорректное имя")]
         public string Name { get; set; }
 
         [Required]
@@ -68,6 +68,7 @@ namespace WebApp2.Models
         [Required]
         [Display(Name = "Телефон")]
         [DataType(DataType.Text)]
+        [RegularExpression(@"^[+][7][(]\d{3}[)]\d{3}[-]\d{2}[-]\d{2}", ErrorMessage = "Некорректный номер телефона")]
         public string Phone { get; set; }
     }
 }

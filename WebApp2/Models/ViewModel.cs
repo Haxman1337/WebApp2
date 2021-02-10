@@ -5,6 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 namespace WebApp2.Models
 {
+    [Serializable]
     public class ViewModel
     {
         [Required]
