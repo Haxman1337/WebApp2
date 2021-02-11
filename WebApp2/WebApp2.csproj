@@ -270,6 +270,7 @@
     <Compile Include="Tools\XmlWorks3.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\data.xml" />
     <Content Include="App_Data\test.xml" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

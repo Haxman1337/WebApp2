@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<ViewModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Customers>
+    <Customer>
+      <Id>1</Id>
+      <Name>Ivanov Ivan Ivanovich</Name>
+      <Birdate>01.01.1990</Birdate>
+      <Regdate>01.01.2020</Regdate>
+      <Email>ivanov@test.ru</Email>
+      <Phone>+7(800)555-35-35</Phone>
+    </Customer>
+    <Customer>
+      <Id>2</Id>
+      <Name>Semenov Semen Semenovich</Name>
+      <Birdate>02.02.1991</Birdate>
+      <Regdate>02.02.2020</Regdate>
+      <Email>semenov@test.ru</Email>
+      <Phone>+7(800)555-36-37</Phone>
+    </Customer>
+  </Customers>
+  <Orders>
+    <Order>
+      <Id>2</Id>
+      <Customer>1</Customer>
+      <Regdate>03.03.2020</Regdate>
+      <Value>13371.00</Value>
+      <Status>Куплен</Status>
+    </Order>
+  </Orders>
+</ViewModel>el>

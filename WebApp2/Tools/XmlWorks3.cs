@@ -12,14 +12,14 @@ namespace WebApp2.Tools
     public static class XmlWorks3
     {
         public static XDocument xDoc;
-        public static List<Customer> Customers = new List<Customer>();
-        public static List<Order> Orders = new List<Order>();
+        public static List<Customer> Customers = new List<Customer>(); //лежит тут чтобы не множить классы в две строки, но по задумке должен лежать в отдельном статическом классе, чтобы в любой момент можно было удалить xmlworks и использовать например "JsonWorks"
+        public static List<Order> Orders = new List<Order>();// та же история
         static string pathToXdoc;
 
         public static void Init(string path)
         {
-            xDoc = XDocument.Load(path);
             pathToXdoc = path;
+            /*xDoc = XDocument.Load(path);
             foreach (XElement el in xDoc.Element("root").Element("Customers").Elements("Customer"))
             {
                 Customer c = new Customer(el.Attribute("Id").Value, el.Attribute("Name").Value, el.Attribute("Birdate").Value, el.Attribute("Regdate").Value, el.Attribute("Email").Value, el.Attribute("Phone").Value);
@@ -29,6 +29,13 @@ namespace WebApp2.Tools
             {
                 Order o = new Order(el.Attribute("Id").Value, el.Attribute("Customer").Value, el.Attribute("Regdate").Value, el.Attribute("Value").Value, el.Attribute("Status").Value);
                 Orders.Add(o);
+            }*/
+            XmlSerializer formatter = new XmlSerializer(typeof(ViewModel));
+            using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
+            {
+                ViewModel newVM = (ViewModel)formatter.Deserialize(fs);
+                Customers = newVM.Customers;
+                Orders = newVM.Orders;
             }
         }
 
@@ -39,12 +46,10 @@ namespace WebApp2.Tools
             vm.Orders = Orders;
             XmlSerializer formatter = new XmlSerializer(typeof(ViewModel));
 
-            // получаем поток, куда будем записывать сериализованный объект
-            using (FileStream fs = new FileStream(@"C:\Users\Haxman\Documents\1.xml", FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream(pathToXdoc, FileMode.OpenOrCreate))
             {
                 formatter.Serialize(fs, vm);
             }
-            //xDoc.Save(pathToXdoc);
         }
     }
 }

@@ -97,6 +97,7 @@ namespace WebApp2.Controllers
                 neededcstmr.Email = customer.Email;
                 neededcstmr.Birdate = SimpleDateConverter.ConvertBack(customer.Birdate);
                 neededcstmr.Regdate = SimpleDateConverter.ConvertBack(customer.Regdate);
+                XmlWorks3.Save();
                 return RedirectToAction("Index");
             }
             return View(customer);
@@ -124,6 +125,7 @@ namespace WebApp2.Controllers
         {
             Customer customer = XmlWorks3.Customers.First(item => item.Id == id);
             XmlWorks3.Customers.Remove(customer);
+            XmlWorks3.Save();
             return RedirectToAction("Index");
         }
 

@@ -8,9 +8,7 @@ namespace WebApp2.Models
     [Serializable]
     public class ViewModel
     {
-        [Required]
         public List<Customer> Customers { get; set; }
-        [Required]
         public List<Order> Orders { get; set; }
     }
 }

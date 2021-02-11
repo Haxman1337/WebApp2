@@ -18,6 +18,7 @@ namespace WebApp2.Controllers
         // GET: Orders
         public ActionResult Index()
         {
+            XmlWorks3.Save();
             return View(XmlWorks3.Orders);
         }
 
@@ -54,6 +55,7 @@ namespace WebApp2.Controllers
                 order.Id = (XmlWorks3.Orders.Max(item => int.Parse(item.Id)) + 1).ToString();
                 order.Regdate = SimpleDateConverter.ConvertBack(order.Regdate);
                 XmlWorks3.Orders.Add(order);
+                XmlWorks3.Save();
                 return RedirectToAction("Index");
             }
 
@@ -89,6 +91,7 @@ namespace WebApp2.Controllers
                 neededordr.Value = order.Value;
                 neededordr.Status = order.Status;
                 neededordr.Regdate = SimpleDateConverter.ConvertBack(order.Regdate);
+                XmlWorks3.Save();
                 return RedirectToAction("Index");
             }
             return View(order);
@@ -116,6 +119,7 @@ namespace WebApp2.Controllers
         {
             Order order = XmlWorks3.Orders.First(item => item.Id == id);
             XmlWorks3.Orders.Remove(order);
+            XmlWorks3.Save();
             return RedirectToAction("Index");
         }
 

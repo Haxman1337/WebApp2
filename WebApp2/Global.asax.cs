@@ -17,7 +17,8 @@ namespace WebApp2
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            XmlWorks3.Init(Server.MapPath("~/App_Data/test.xml"));
+            //XmlWorks3.Init(Server.MapPath("~/App_Data/test.xml"));
+            XmlWorks3.Init(Server.MapPath("~/App_Data/data.xml"));
         }
     }
 }
